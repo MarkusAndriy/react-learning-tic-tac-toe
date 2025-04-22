@@ -1,12 +1,15 @@
 ﻿import { useState } from 'react';
 
-export default function Player({initialName, symbol, isActive}) {
+export default function Player({initialName, symbol, isActive, onChangeName}) {
 
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
 
   function handleBtnToggle() {
     setIsEditing(prev => !prev);
+    if (isEditing) {
+      onChangeName(symbol, playerName);
+    }
   }
   function handleInputChange(e) {
     setPlayerName(e.target.value);
